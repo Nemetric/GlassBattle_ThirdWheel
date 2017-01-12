@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Rectangle x:Name="Rekt" Fill="#FFF4F4F5" Stroke="Black"/>
+        <Rectangle x:Name="Rekt" Fill="#FF5B5BFF" Stroke="Black"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="98,67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
     </Grid>
 </Page>
