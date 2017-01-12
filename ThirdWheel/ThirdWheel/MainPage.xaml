@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Rectangle Fill="Blue" Stroke="Black"/>
+        <Rectangle x:Name="Rekt" Fill="#FFF4F4F5" Stroke="Black"/>
     </Grid>
 </Page>
