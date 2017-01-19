@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Rectangle x:Name="Rekt" Fill="#FF5B5BFF" Stroke="Black"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="98,67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <Rectangle x:Name="rect" Fill="{Binding Fill, RelativeSource={RelativeSource Mode=Self}}" Stroke="Black"/>
+        <Button x:Name="button" Content="&#xD;&#xA;RED&#xD;&#xA;" HorizontalAlignment="Left" Margin="60,361,0,0" VerticalAlignment="Top" Click="button_Click"/>
     </Grid>
 </Page>
