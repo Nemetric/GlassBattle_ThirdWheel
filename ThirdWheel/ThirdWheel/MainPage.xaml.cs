@@ -29,10 +29,15 @@ namespace ThirdWheel
         {
             this.InitializeComponent();
         }
-
+        //a = opacity
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            rect.Fill = new SolidColorBrush(Colors.Red);
+            string hexin = "#FFFFFF";
+            string r = hexin.Substring(1, 2);
+            string g = hexin.Substring(3, 2);
+            string b = hexin.Substring(5, 2);
+
+            rect.Fill = new SolidColorBrush(Color.FromArgb(255, Convert.ToByte(r, 16), Convert.ToByte(g, 16), Convert.ToByte(b, 16)));
         }
     }
 }
