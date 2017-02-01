@@ -9,5 +9,6 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Rectangle x:Name="rect" Fill="{Binding Fill, RelativeSource={RelativeSource Mode=Self}}" Stroke="Black" Loaded="rect_Loaded"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,574" TextWrapping="Wrap" Text="TextBlock" Width="176" FontSize="30"/>
     </Grid>
 </Page>
