@@ -53,11 +53,11 @@ namespace ThirdWheel
                 string b = hexin.Substring(5, 2);
 
                 rect.Fill = new SolidColorBrush(Color.FromArgb(255, Convert.ToByte(r, 16), Convert.ToByte(g, 16), Convert.ToByte(b, 16)));
-                textBlock.Text = "hello";
+                textBox.Text = asdf.Text;
             }
             catch (Exception)
             {
-                textBlock.Text = "hello";
+
             }
         }
 
