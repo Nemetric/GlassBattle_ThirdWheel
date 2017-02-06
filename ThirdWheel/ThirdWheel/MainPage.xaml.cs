@@ -41,7 +41,7 @@ namespace ThirdWheel
             {
                 HttpClient httpclient = new HttpClient();
 
-                var response = await httpclient.GetAsync("http://localhost:58592/display/whatnext/1");
+                var response = await httpclient.GetAsync("http://glassbattleapp.azurewebsites.net/display/whatnext/1");
 
                 var ResponseText = await response.Content.ReadAsStringAsync();
 
