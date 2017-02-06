@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Rectangle x:Name="rect" Fill="{Binding Fill, RelativeSource={RelativeSource Mode=Self}}" Stroke="Black" Loaded="rect_Loaded"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,574" TextWrapping="Wrap" Text="TextBlock" Width="176" FontSize="30"/>
+        <Rectangle x:Name="rect" Fill="{Binding Filll, RelativeSource={RelativeSource Mode=Self}}" Stroke="Black" Loaded="rect_Loaded"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="74,42,0,230" TextWrapping="Wrap" Width="439" FontSize="30" FocusVisualPrimaryBrush="Black" Text="{Binding Text, RelativeSource={RelativeSource Mode=Self}}"/>
     </Grid>
 </Page>
