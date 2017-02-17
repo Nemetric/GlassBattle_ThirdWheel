@@ -204,11 +204,11 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Rectangle x:Name="rect" Fill="{Binding Filll, RelativeSource={RelativeSource Mode=Self}}" Stroke="Black" Loaded="rect_Loaded"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="79,62,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="107,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
         <Canvas>
             <Slider x:Name="rPuck" Canvas.Left="600" Width="40" Orientation="Vertical" Height="360" Value="50" Background="{x:Null}" Style="{StaticResource SliderStyle1}"/>
             <Slider x:Name="lPuck" Canvas.Left="4" Width="40" Orientation="Vertical" Height="360" Value="50" Background="{x:Null}" Style="{StaticResource SliderStyle1}"/>
-            <Ellipse Fill="#FF0078D7" Height="9" Canvas.Left="315" Stroke="#FF0078D7" Canvas.Top="203" Width="9"/>
+            <Ellipse Fill="#FF0078D7" Height="9" Canvas.Left="315" Stroke="Black" Canvas.Top="203" Width="9"/>
         </Canvas>
 
     </Grid>
