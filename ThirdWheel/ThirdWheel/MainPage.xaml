@@ -1,4 +1,4 @@
-﻿<Page
+﻿<!--<Page
     x:Class="ThirdWheel.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,4 +15,4 @@
         <Ellipse x:Name="Puck" Fill="#FFF4F4F5" HorizontalAlignment="Center" Height="13" Margin="0" Stroke="Black" VerticalAlignment="Center" Width="13"/>
 
     </Grid>
-</Page>
+</Page>-->
