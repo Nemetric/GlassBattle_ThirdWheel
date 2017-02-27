@@ -28,6 +28,23 @@ namespace ThirdWheel
 
     public sealed partial class MainPage : Page
     {
+        public TranslateTransform rTranslate = new TranslateTransform();
+        public TranslateTransform lTranslate = new TranslateTransform();
+        public TranslateTransform pTranslate = new TranslateTransform();
+
+        public async void Game(object sender, object e)
+        {
+            rPad.RenderTransform = rTranslate;
+            lPad.RenderTransform = lTranslate;
+            Puck.RenderTransform = pTranslate;
+
+            if (pTranslate.X < 5)
+            {
+                pTranslate.Y = pTranslate.Y + 10;
+                pTranslate.X = pTranslate.X + 10;
+            }
+        }
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -53,11 +70,12 @@ namespace ThirdWheel
                 string b = hexin.Substring(5, 2);
 
                 rect.Fill = new SolidColorBrush(Color.FromArgb(255, Convert.ToByte(r, 16), Convert.ToByte(g, 16), Convert.ToByte(b, 16)));
-                textBlock.Text = "hello";
+                textBox.Text = "hello";
             }
+
             catch (Exception)
             {
-                textBlock.Text = "hello";
+                textBox.Text = "hello";
             }
         }
 
@@ -67,6 +85,11 @@ namespace ThirdWheel
             timer.Tick += UpdateColor;
             timer.Interval = new TimeSpan(0, 0, 0, 1);
             timer.Start();
+
+            var frameTimer = new DispatcherTimer();
+            frameTimer.Tick += Game;
+            frameTimer.Interval = new TimeSpan(0, 0, 0, 0, 15);
+            frameTimer.Start();
         }
     }
 }
