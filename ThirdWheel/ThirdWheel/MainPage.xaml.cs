@@ -32,17 +32,119 @@ namespace ThirdWheel
         public TranslateTransform lTranslate = new TranslateTransform();
         public TranslateTransform pTranslate = new TranslateTransform();
 
+        public int puckY = 10;
+        public int puckX = 10;
+
+        public int rPoints = 0;
+        public int lPoints = 0;
+
+        public double lMove = 0;
+        public double rMove = 0;
+
+        public DispatcherTimer delayTimer;
+
         public async void Game(object sender, object e)
         {
             rPad.RenderTransform = rTranslate;
             lPad.RenderTransform = lTranslate;
             Puck.RenderTransform = pTranslate;
 
-            if (pTranslate.X < 5)
+            Point puckPoint = Puck.TransformToVisual(Window.Current.Content).TransformPoint(new Point( 0, 0));
+
+            if (pTranslate.Y > rect.ActualHeight * 0.5)
             {
-                pTranslate.Y = pTranslate.Y + 10;
-                pTranslate.X = pTranslate.X + 10;
+                puckY = -10;
             }
+            else if (pTranslate.Y < rect.ActualHeight * -0.5)
+            {
+                puckY = 10;
+            }
+
+            if (pTranslate.X > rect.ActualWidth * 0.5)
+            {
+                puckY = 10;
+                puckX = 10;
+
+                pTranslate.X = 0;
+                pTranslate.Y = 0;
+
+                lPoints = lPoints + 1;
+                lScore.Text = lPoints.ToString();
+            }
+            else if (pTranslate.X < rect.ActualWidth * -0.5)
+            {
+                puckY = 10;
+                puckX = 10;
+
+                pTranslate.X = 0;
+                pTranslate.Y = 0;
+
+                rPoints = rPoints + 1;
+                rScore.Text = rPoints.ToString();
+            }
+
+            if (pTranslate.Y > rTranslate.Y - (rPad.ActualHeight * 0.5) && pTranslate.Y < rTranslate.Y + (rPad.ActualHeight * 0.5) && pTranslate.X > (rect.ActualWidth / 2) - 25)
+            {
+                puckX = -10;
+            }
+
+            pTranslate.Y = pTranslate.Y + puckY;
+            pTranslate.X = pTranslate.X + puckX;
+
+            lTranslate.Y = lTranslate.Y + lMove * -10;
+            rTranslate.Y = rTranslate.Y + rMove * -10;
+
+            if (lTranslate.Y < (rect.ActualHeight * -0.5))
+            {
+                lTranslate.Y = (rect.ActualHeight * -0.5);
+            }
+            else if (lTranslate.Y > (rect.ActualHeight * 0.5))
+            {
+                lTranslate.Y = (rect.ActualHeight * 0.5);
+            }
+
+            if (rTranslate.Y < (rect.ActualHeight * -0.5))
+            {
+                rTranslate.Y = (rect.ActualHeight * -0.5);
+            }
+            else if (rTranslate.Y > (rect.ActualHeight * 0.5))
+            {
+                rTranslate.Y = (rect.ActualHeight * 0.5);
+            }
+
+            if (rPoints > 9)
+            {
+                rScore.Text = "WINNER";
+                lScore.Text = "LOSER";
+                puckX = 0;
+                puckY = 0;
+                if (!delayTimer.IsEnabled)
+                    delayTimer.Start();
+            }
+
+            if (lPoints > 9)
+            {
+                lScore.Text = "WINNER";
+                rScore.Text = "LOSER";
+                puckX = 0;
+                puckY = 0;
+                if (!delayTimer.IsEnabled)
+                    delayTimer.Start();
+            }
+        }
+
+        public void GameReset(object sended, object d)
+        {
+            puckY = 10;
+            puckX = 10;
+
+            rPoints = 0;
+            lPoints = 0;
+
+            rScore.Text = "0";
+            lScore.Text = "0";
+
+            delayTimer.Stop();
         }
 
         public MainPage()
@@ -90,6 +192,12 @@ namespace ThirdWheel
             frameTimer.Tick += Game;
             frameTimer.Interval = new TimeSpan(0, 0, 0, 0, 15);
             frameTimer.Start();
+
+            delayTimer = new DispatcherTimer();
+            delayTimer.Tick += GameReset;
+            delayTimer.Interval = new TimeSpan(0, 0, 0, 3);
+
         }
+
     }
 }
