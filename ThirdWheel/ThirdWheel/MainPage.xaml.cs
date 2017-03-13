@@ -16,7 +16,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace ThirdWheel
@@ -32,8 +31,8 @@ namespace ThirdWheel
         public TranslateTransform lTranslate = new TranslateTransform();
         public TranslateTransform pTranslate = new TranslateTransform();
 
-        public int puckY = 10;
-        public int puckX = 10;
+        public int puckY = 5;
+        public int puckX = 5;
 
         public int rPoints = 0;
         public int lPoints = 0;
@@ -41,9 +40,19 @@ namespace ThirdWheel
         public double lMove = 0;
         public double rMove = 0;
 
+        public string lName = "Donald";
+        public string rName = "Bernie";
+
         public DispatcherTimer delayTimer;
 
-        public async void Game(object sender, object e)
+        //Both names must be filled to restart the match
+        //Names are showen at the begining of each match
+        //10 points is endgame
+        //If there is no user in line, set the Name to null
+        //Input is handled though lMove and rMove
+        //should've probably commented in an organised manor, but yolo
+
+        public async void Game(object sender, object c)
         {
             rPad.RenderTransform = rTranslate;
             lPad.RenderTransform = lTranslate;
@@ -60,20 +69,22 @@ namespace ThirdWheel
                 puckY = 10;
             }
 
+            Random fluid = new Random();
+
             if (pTranslate.X > rect.ActualWidth * 0.5)
             {
-                puckY = 10;
-                puckX = 10;
+                puckX = -10;
 
                 pTranslate.X = 0;
                 pTranslate.Y = 0;
 
                 lPoints = lPoints + 1;
                 lScore.Text = lPoints.ToString();
+
+                puckX = puckX + fluid.Next(-6, 6);
             }
             else if (pTranslate.X < rect.ActualWidth * -0.5)
             {
-                puckY = 10;
                 puckX = 10;
 
                 pTranslate.X = 0;
@@ -81,11 +92,20 @@ namespace ThirdWheel
 
                 rPoints = rPoints + 1;
                 rScore.Text = rPoints.ToString();
+
+                puckX = puckX + fluid.Next(-6, 6) / 2;
             }
 
             if (pTranslate.Y > rTranslate.Y - (rPad.ActualHeight * 0.5) && pTranslate.Y < rTranslate.Y + (rPad.ActualHeight * 0.5) && pTranslate.X > (rect.ActualWidth / 2) - 25)
             {
                 puckX = -10;
+                puckY = puckY + fluid.Next(-6, 6) / 2;
+            }
+
+            if (pTranslate.Y > lTranslate.Y - (lPad.ActualHeight * 0.5) && pTranslate.Y < lTranslate.Y + (lPad.ActualHeight * 0.5) && pTranslate.X < (rect.ActualWidth / -2) + 25)
+            {
+                puckX = 10;
+                puckY = puckY + fluid.Next(-6, 6);
             }
 
             pTranslate.Y = pTranslate.Y + puckY;
@@ -118,7 +138,11 @@ namespace ThirdWheel
                 lScore.Text = "LOSER";
                 puckX = 0;
                 puckY = 0;
-                if (!delayTimer.IsEnabled)
+                while (lName == null && rName == null)
+                {
+
+                }
+                if (!delayTimer.IsEnabled && lName != null && rName != null)
                     delayTimer.Start();
             }
 
@@ -128,9 +152,16 @@ namespace ThirdWheel
                 rScore.Text = "LOSER";
                 puckX = 0;
                 puckY = 0;
-                if (!delayTimer.IsEnabled)
+                while (lName == null && rName == null)
+                {
+
+                }
+                if (!delayTimer.IsEnabled && lName != null && rName != null)
                     delayTimer.Start();
             }
+
+            rMove = ((slider.Value - 100) / 50);
+
         }
 
         public void GameReset(object sended, object d)
@@ -141,8 +172,8 @@ namespace ThirdWheel
             rPoints = 0;
             lPoints = 0;
 
-            rScore.Text = "0";
-            lScore.Text = "0";
+            rScore.Text = rName;
+            lScore.Text = lName;
 
             delayTimer.Stop();
         }

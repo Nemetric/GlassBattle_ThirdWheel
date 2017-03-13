@@ -10,11 +10,16 @@
     <Grid x:Name="grid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Rectangle x:Name="rect" Fill="{Binding Filll, RelativeSource={RelativeSource Mode=Self}}" Stroke="Black" Loaded="rect_Loaded" Margin="10"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="79,62,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Visibility="Collapsed"/>
-        <Rectangle x:Name="rPad" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="66" Margin="0,0,10,3" Stroke="Black" VerticalAlignment="Center" Width="18" RenderTransformOrigin="0.5,0.5" />
-        <Rectangle x:Name="lPad" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="66" Margin="10,146,0,148" Stroke="Black" VerticalAlignment="Center" Width="18"/>
+        <Rectangle x:Name="rPad" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="133" Margin="0,256,10,251" Stroke="Black" VerticalAlignment="Center" Width="18" RenderTransformOrigin="0.5,0.5" />
+        <Rectangle x:Name="lPad" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="133" Margin="10,256,0,251" Stroke="Black" VerticalAlignment="Center" Width="18"/>
         <Ellipse x:Name="Puck" Fill="White" HorizontalAlignment="Center" Height="13" Margin="0" Stroke="Black" VerticalAlignment="Center" Width="13"/>
         <TextBlock x:Name="lScore" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="" Width="250" Height="73" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="50"/>
         <TextBlock x:Name="rScore" Margin="0,0,10,10" TextWrapping="Wrap" Text="" Height="73" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="50" HorizontalAlignment="Right" Width="246"/>
+        <Slider x:Name="slider" Margin="0,185,44.133,0" VerticalAlignment="Top" Maximum="200" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" HorizontalAlignment="Right" Width="222">
+            <Slider.RenderTransform>
+                <CompositeTransform Rotation="-90.21"/>
+            </Slider.RenderTransform>
+        </Slider>
 
     </Grid>
 </Page>
